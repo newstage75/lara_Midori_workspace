@@ -33,5 +33,33 @@ class PeopleTableSeeder extends Seeder
           'age' => 56,
         ];
         DB::table('people')->insert($param);
+
+        $param = [
+          'name' => 'jiro',
+          'mail' => 'jiro@change.jp',
+          'age' => 27,
+        ];
+        DB::table('people')->insert($param);
+
+        $param = [
+          'name' => 'mami',
+          'mail' => 'mami@mumemo.jp',
+          'age' => 56,
+        ];
+        DB::table('people')->insert($param);
+
+        $param = [
+          'name' => 'ichiro',
+          'mail' => 'ichiroo@baseball.jp',
+          'age' => 68,
+        ];
+        DB::table('people')->insert($param);
+
+        $param = [
+          'name' => 'miyoko',
+          'mail' => 'miyoko@piyoko.jp',
+          'age' => 7,
+        ];
+        DB::table('people')->insert($param);
     }
 }

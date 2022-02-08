@@ -17,14 +17,18 @@ use App\MyClasses\MyServiceInterface;
 //MyServiceファサードの使用
 use App\Facades\MyService;
 
+//ファサード「DBクラス」の利用
+use Illuminate\Support\Facades\DB;
+
 class HelloController extends Controller
 {
 
-  public function index(Request $request)
+  public function index()
   {
+    $result = DB::table('people')->get();
     $data = [
-      'msg' => $request->msg,
-      'data' => $request->alldata,
+      'msg' => 'Database access.',
+      'data' => $result,
     ];
     return view('hello.index', $data);
   }
