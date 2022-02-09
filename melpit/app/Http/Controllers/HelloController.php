@@ -32,11 +32,20 @@ class HelloController extends Controller
   public function index(Request $request)
   {
       $msg = 'show people records.';
-      $result = Person::get();
+      $result = Person::get()->reject(function($person)
+      {
+        return $person->age < 50;
+      });
+
+      $result2 = Person::get()->filter(function($person){
+        return $person->age < 20;
+      });
+
+      $result3 = $result->diff($result2);
 
       $data = [
           'msg' => $msg,
-          'data' => $result,
+          'data' => $result3,
       ];
       return view('hello.index', $data);
   }
