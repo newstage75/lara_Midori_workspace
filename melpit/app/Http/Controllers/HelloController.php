@@ -20,20 +20,24 @@ use App\Facades\MyService;
 //ファサード「DBクラス」の利用
 use Illuminate\Support\Facades\DB;
 
+//Personモデルの利用
+use App\Person;
+
+//MyPaginatorの利用
+use App\Http\Pagination\MyPaginator;
+
 class HelloController extends Controller
 {
 
-  public function index($id)
+  public function index(Request $request)
   {
-    $msg = 'show page:' . $id;
-    $result = DB::table('people')
-      ->paginate(3, ['*'], 'page', $id);
+      $msg = 'show people records.';
+      $result = Person::get();
 
-    $data = [
-      'msg' => $msg,
-      'data' => $result,
-    ];
-
-    return view('hello.index', $data);
+      $data = [
+          'msg' => $msg,
+          'data' => $result,
+      ];
+      return view('hello.index', $data);
   }
 }

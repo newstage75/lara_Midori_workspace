@@ -52,4 +52,7 @@ $app->singleton(
 |
 */
 
+// ページネーションで使うリンクのスタイルにBootstrapのものを適用するための追記
+Illuminate\Pagination\AbstractPaginator::defaultView("pagination::bootstrap-4");
+
 return $app;
