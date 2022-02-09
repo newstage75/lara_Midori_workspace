@@ -23,22 +23,15 @@ use Illuminate\Support\Facades\DB;
 class HelloController extends Controller
 {
 
-  public function index($id = -1)
+  public function index($id)
   {
-    if($id >= 0)
-    {
-      $msg = 'get name like "' . $id.  '".';
-      $result = DB::table('people')
-        ->where('name', 'like', '%'. $id . '%')->get();
-    }
-    else {
-      $msg = 'get people recordes.';
-      $result = DB::table('pepple')->get();
-    }
+    $msg = 'show page:' . $id;
+    $result = DB::table('people')
+      ->paginate(3, ['*'], 'page', $id);
 
     $data = [
       'msg' => $msg,
-      'data' => $result
+      'data' => $result,
     ];
 
     return view('hello.index', $data);
