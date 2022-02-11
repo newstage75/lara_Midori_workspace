@@ -7,6 +7,18 @@ use Illuminate\Database\Eloquent\Collection;
 
 class Person extends Model
 {
+
+  //P161Personモデルクラスに$guardedと$rulesを追加
+
+    protected $guarded = ['id'];
+
+    public static $rules = [
+      'name' => 'required',
+      'mail' => 'email',
+      'age' => 'integer',
+    ];
+
+
     public function newCollection(array $models = [])
     {
       return new MyCollection($models);
@@ -31,6 +43,19 @@ class Person extends Model
     public function getAllDataAttribute()
     {
       return $this->name . '('. $this->age . ')' . '['. $this->mail .']';
+    }
+
+
+    //nameを大文字にするアクセサ
+    public function getNameAttribute($value)
+    {
+      return strtoupper($value);
+    }
+
+    //nameを大文字にするミューテータ
+    public function setNameAttribute($value)
+    {
+      $this->attributes['name'] = strtoupper($value);
     }
 
 }

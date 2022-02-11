@@ -44,4 +44,13 @@ class HelloController extends Controller
 
       return view('hello.index', $data);
   }
+
+
+  //P161Personを更新するメソッド
+  public function save($id, $name){
+      $record = Person::find($id);
+      $record->name = $name;
+      $record->save();
+      return redirect()->route('hello');
+  }
 }
