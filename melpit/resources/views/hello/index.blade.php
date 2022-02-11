@@ -24,10 +24,8 @@
     <table border="1">
     @foreach($data as $item)
       <tr>
-        <td>{{$item->id}}</td>
-        <td>{{$item->name}}</td>
-        <td>{{$item->mail}}</td>
-        <td>{{$item->age}}</td>
+        <th>{{$item->id}}</th>
+        <td>{{$item->all_data}}</td>
       </tr>
     @endforeach
     </table>

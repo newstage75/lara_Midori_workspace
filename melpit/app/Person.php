@@ -11,6 +11,28 @@ class Person extends Model
     {
       return new MyCollection($models);
     }
+
+    //アクセサP157にname_and_age属性の追加
+    public function getNameAndIdAttribute()
+    {
+      return $this->name . '[id='. $this->id . ']';
+    }
+
+    public function getNameAndMailAttribute()
+    {
+      return $this->name . '[id='. $this->mail . ']';
+    }
+
+    public function getNameAndAgeAttribute()
+    {
+      return $this->name . '[id='. $this->age . ']';
+    }
+
+    public function getAllDataAttribute()
+    {
+      return $this->name . '('. $this->age . ')' . '['. $this->mail .']';
+    }
+
 }
 
 
