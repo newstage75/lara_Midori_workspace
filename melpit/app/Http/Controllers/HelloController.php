@@ -32,17 +32,27 @@ class HelloController extends Controller
   public function index(Request $request)
   {
       $msg = 'show people records.';
-      $keys = Person::get()->modelKeys();
-      $even = array_filter($keys, function($key)
+
+      //LaraMidoriP152コレクションの機能mergeとunique
+      $even = Person::get()->filter(function($item)
         {
-          return $key % 2 == 0;
+          return $item->id % 2 == 0;
         });
-      $result = Person::get()->except($even);
+
+      $even2 = Person::get()->filter(function($item)
+        {
+          return $item->age % 2 == 0;
+        });
+      $result = $even->merge($even2);
+
+      //自分でコードの追加！コレクションを並び帰るにはsortByを使うこと！
+      $result2 = $result->sortBy('id');
 
       $data = [
         'msg' => $msg,
-        'data' => $result,
+        'data' => $result2,
       ];
+
       return view('hello.index', $data);
   }
 }
