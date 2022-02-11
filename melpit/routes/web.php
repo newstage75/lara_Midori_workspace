@@ -27,6 +27,9 @@ Route::get('/', function () {
 Route::get('/hello', 'HelloController@index')->name('hello');
 //P164のHelloController@otherのルート追加（順番注意！）
 Route::get('/hello/other', 'HelloController@other');
+//P165のHelloController@jsonのルート追加
+Route::get('/hello/json', 'HelloController@json');
+Route::get('/hello/json/{id}', 'HelloController@json');
 Route::get('/hello/{id}', 'HelloController@index');
 Route::get('/hello/{id}/{name}', 'HelloController@save');
 

@@ -63,4 +63,17 @@ class HelloController extends Controller
 
     return redirect()->route('hello');
   }
+
+    //P165JSON形式でのレコードの取得（toJSON）
+    public function json($id = -1)
+    {
+      if($id == -1)
+      {
+        return Person::get()->toJson();
+      }
+      else
+      {
+          return Person::find($id)->toJson();
+      }
+    }
 }
